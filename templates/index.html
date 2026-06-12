@@ -1,0 +1,40 @@
+<div class="container">
+    <head>
+        <h1>Titanic Survival Predictor</h1>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <form action="/predict" method="POST">
+
+        <label>Passenger Class</label>
+        <select name="Pclass">
+            <option value="1">1st Class</option>
+            <option value="2">2nd Class</option>
+            <option value="3">3rd Class</option>
+        </select>
+
+        <label>Sex</label>
+        <select name="Sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label>Siblings/Spouses Aboard</label>
+        <input type="number" name="SibSp" required>
+
+        <label>Parents/Children Aboard</label>
+        <input type="number" name="Parch" required>
+
+        <label>Ticket Fare (£)</label>
+        <input type="number" step="0.01" name="Fare" required>
+
+        <button type="submit">Predict</button>
+
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
+</div>
